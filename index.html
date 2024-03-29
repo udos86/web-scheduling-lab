@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>INP Demo</title>
+
+  <link href="/styles.css" rel="stylesheet" type="text/css">
+
+  <script src="/main.js" type="module"></script>
+</head>
+
+<body>
+
+  <header>INP Demo</header>
+
+  <main>
+
+    <ul>
+      <li class="square"></li>
+      <li class="square"></li>
+      <li class="square"></li>
+      <li class="square"></li>
+      <li class="square"></li>
+    </ul>
+
+    <form>
+      <fieldset>
+        <legend>Scheduling API</legend>
+
+        <div>
+          <input type="radio" id="none" name="api" value="none" checked />
+          <label for="none">none (synchronous)</label>
+        </div>
+
+        <div>
+          <input type="radio" id="setTimeout" name="api" value="setTimeout" />
+          <label for="setTimeout">setTimeout</label>
+        </div>
+
+        <div>
+          <input type="radio" id="requestIdleCallback" name="api" value="requestIdleCallback" />
+          <label for="requestIdleCallback">requestIdleCallback</label>
+        </div>
+
+        <div>
+          <input type="radio" id="requestAnimationFrame" name="api" value="requestAnimationFrame" />
+          <label for="requestAnimationFrame">requestAnimationFrame</label>
+        </div>
+
+        <div>
+          <input type="radio" id="requestAnimationFrameRecursive" name="api" value="requestAnimationFrameRecursive" />
+          <label for="requestAnimationFrameRecursive">requestAnimationFrame recursive</label>
+        </div>
+
+        <div>
+          <input type="radio" id="queueMicrotask" name="api" value="queueMicrotask" />
+          <label for="queueMicrotask">queueMicrotask</label>
+        </div>
+
+        <div>
+          <input type="radio" id="postTask" name="api" value="postTask" />
+          <label for="postTask">scheduler.postTask</label>
+        </div>
+
+        <div>
+          <input type="radio" id="messageChannel" name="api" value="messageChannel" />
+          <label for="messageChannel">Message Channel</label>
+        </div>
+
+        <div>
+          <input type="radio" id="rafMessageChannel" name="api" value="rafMessageChannel" />
+          <label for="rafMessageChannel">Message Channel in requestAnimationFrame</label>
+        </div>
+
+        <div>
+          <input type="radio" id="mutationObserver" name="api" value="mutationObserver" />
+          <label for="mutationObserver">Mutation Observer</label>
+        </div>
+
+        <div>
+          <input type="radio" id="generator" name="api" value="generator" />
+          <label for="generator">Generator</label>
+        </div>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Options</legend>
+
+        <div>
+          <input type="checkbox" id="yieldToMainOnScheduled" name="yieldToMainOnScheduled" value="yieldToMainOnScheduled" />
+          <label for="yieldToMain">Yield to main on scheduled</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="yieldToMainOnTaskEnd" name="yieldToMainOnTaskEnd" value="yieldToMainOnTaskEnd" />
+          <label for="yieldToMainOnTaskEnd">Yield to main on task end</label>
+        </div>
+      </fieldset>
+    </form>
+
+    <button type="button" id="btnRunTask">Run Task</button>
+
+    <button type="button" id="btnReset">Reset</button>
+
+  </main>
+
+</body>
+
+</html>
