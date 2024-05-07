@@ -12,13 +12,13 @@ function getSchedulerApi() {
 
 function yieldToMainOnScheduled() {
   const checked = form().elements['yieldToMainOnScheduled'].checked;
-  console.log('yieldToMainOnScheduled', checked);
+  // console.log('yieldToMainOnScheduled', checked);
   return checked;
 }
 
 function yieldToMainOnTaskEnd() {
   const checked = form().elements['yieldToMainOnTaskEnd'].checked;
-  console.log('yieldToMainOnTaskEnd', checked);
+  // console.log('yieldToMainOnTaskEnd', checked);
   return checked;
 }
 
@@ -38,9 +38,11 @@ function setSquareBackgroundColor(square, color = '#FF0000') {
 }
 
 async function task(square) {
+  console.log('Task started');
   simulateWorkload(() => {
     setSquareBackgroundColor(square, '#0000FF');
   });
+  console.log('Task finished, now yielding');
 
   if (yieldToMainOnTaskEnd()) await yieldToMain();
 }
@@ -139,6 +141,11 @@ window.addEventListener('DOMContentLoaded', () => {
     (async () => {
       for (const square of squares()) {
         fn(square);
+        requestAnimationFrame(() => {
+          const channel = new MessageChannel();
+          channel.port1.onmessage = () => console.log('Paint');
+          channel.port2.postMessage(null);
+        });
         if (yieldToMainOnScheduled()) await yieldToMain();
       }
     })();
@@ -149,3 +156,12 @@ window.addEventListener('DOMContentLoaded', () => {
     squares().forEach(square => setSquareBackgroundColor(square, '#FF0000'))
   });
 });
+
+
+// see https://github.com/kriskowal/asap
+// see https://github.com/kriskowal/asap/blob/master/browser-raw.js
+// see https://github.com/kriskowal/asap/blob/master/browser-asap.js
+
+// see https://github.com/facebook/react/tree/main/packages/scheduler
+// see https://github.com/facebook/react/blob/main/packages/scheduler/src/forks/Scheduler.js
+// see https://github.com/facebook/react/blob/main/packages/scheduler/src/forks/SchedulerPostTask.js
